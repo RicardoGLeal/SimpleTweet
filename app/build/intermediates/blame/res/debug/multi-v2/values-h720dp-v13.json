@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/ricardogl/Documents/AndroidStudioProjects/SimpleTweet/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
+            "outputFile": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/ricardogl/.gradle/caches/transforms-2/files-2.1/f7fa931c10060cb31b4ececcd856b65d/appcompat-1.1.0/res/values-h720dp-v13/values-h720dp-v13.xml",
+                    "source": "/Users/ricardogl/.gradle/caches/transforms-2/files-2.1/a16db5b44425ecffd4781fb791b0f708/appcompat-1.2.0/res/values-h720dp-v13/values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
