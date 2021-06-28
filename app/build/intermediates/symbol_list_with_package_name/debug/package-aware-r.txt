@@ -1787,6 +1787,7 @@ id clip_horizontal
 id clip_vertical
 id clockwise
 id collapseActionView
+id compose
 id confirm_button
 id container
 id content
@@ -2241,6 +2242,7 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 menu login
+menu menu_main
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
 string abc_action_bar_up_description
