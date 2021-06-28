@@ -11,9 +11,17 @@
         android:id="@+id/rvTweets"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/logout_btn"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="0dp" />
+
+    <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp" />
+        android:text="Logout" />
 </RelativeLayout>
