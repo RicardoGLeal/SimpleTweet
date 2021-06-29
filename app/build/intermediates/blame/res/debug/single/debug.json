@@ -20,6 +20,10 @@
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/activity_timeline.xml"
     },
     {
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_activity_compose.xml.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/activity_compose.xml"
+    },
+    {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_item_tweet.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/item_tweet.xml"
     },

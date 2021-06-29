@@ -18,7 +18,7 @@
 12-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:8:22-78
 13
 14    <application
-14-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:10:5-37:19
+14-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:10:5-38:19
 15        android:name="com.codepath.apps.restclienttemplate.TwitterApp"
 15-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:11:9-35
 16        android:allowBackup="true"
@@ -33,57 +33,60 @@
 21        android:testOnly="true"
 22        android:theme="@style/AppTheme" >
 22-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:15:9-40
-23        <activity android:name="com.codepath.apps.restclienttemplate.TimelineActivity" />
-23-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:16:9-63
-23-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:16:19-51
-24        <activity
-24-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:17:9-36:20
-25            android:name="com.codepath.apps.restclienttemplate.LoginActivity"
-25-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:18:13-42
-26            android:label="@string/app_name"
-26-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:19:13-45
-27            android:theme="@style/AppTheme" >
-27-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:20:13-44
-28            <intent-filter>
-28-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:21:13-25:29
-29                <action android:name="android.intent.action.MAIN" />
-29-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:22:17-69
-29-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:22:25-66
-30
-31                <category android:name="android.intent.category.LAUNCHER" />
-31-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:24:17-77
-31-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:24:27-74
-32            </intent-filter>
-33            <intent-filter>
-33-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:26:13-35:29
-34                <action android:name="android.intent.action.VIEW" />
-34-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:27:17-69
-34-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:27:25-66
-35
-36                <category android:name="android.intent.category.DEFAULT" />
-36-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:29:17-76
-36-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:29:27-73
-37                <category android:name="android.intent.category.BROWSABLE" />
-37-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:30:17-78
-37-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:30:27-75
-38
-39                <data
-39-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:32:17-34:62
-40                    android:host="@string/intent_host"
-40-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:33:21-55
-41                    android:scheme="@string/intent_scheme" />
-41-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:34:21-59
-42            </intent-filter>
-43        </activity>
-44
-45        <service
-45-->[androidx.room:room-runtime:2.2.5] /Users/ricardogl/.gradle/caches/transforms-2/files-2.1/94408f450c40aad162bc9708d96445f2/room-runtime-2.2.5/AndroidManifest.xml:25:9-28:40
-46            android:name="androidx.room.MultiInstanceInvalidationService"
-46-->[androidx.room:room-runtime:2.2.5] /Users/ricardogl/.gradle/caches/transforms-2/files-2.1/94408f450c40aad162bc9708d96445f2/room-runtime-2.2.5/AndroidManifest.xml:26:13-74
-47            android:directBootAware="true"
-47-->[androidx.room:room-runtime:2.2.5] /Users/ricardogl/.gradle/caches/transforms-2/files-2.1/94408f450c40aad162bc9708d96445f2/room-runtime-2.2.5/AndroidManifest.xml:27:13-43
-48            android:exported="false" />
-48-->[androidx.room:room-runtime:2.2.5] /Users/ricardogl/.gradle/caches/transforms-2/files-2.1/94408f450c40aad162bc9708d96445f2/room-runtime-2.2.5/AndroidManifest.xml:28:13-37
-49    </application>
-50
-51</manifest>
+23        <activity android:name="com.codepath.apps.restclienttemplate.ComposeActivity" />
+23-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:16:9-62
+23-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:16:19-50
+24        <activity android:name="com.codepath.apps.restclienttemplate.TimelineActivity" />
+24-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:17:9-54
+24-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:17:19-51
+25        <activity
+25-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:18:9-37:20
+26            android:name="com.codepath.apps.restclienttemplate.LoginActivity"
+26-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:19:13-42
+27            android:label="@string/app_name"
+27-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:20:13-45
+28            android:theme="@style/AppTheme" >
+28-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:21:13-44
+29            <intent-filter>
+29-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:22:13-26:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:23:17-69
+30-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:23:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:25:17-77
+32-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:25:27-74
+33            </intent-filter>
+34            <intent-filter>
+34-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:27:13-36:29
+35                <action android:name="android.intent.action.VIEW" />
+35-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:28:17-69
+35-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:28:25-66
+36
+37                <category android:name="android.intent.category.DEFAULT" />
+37-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:30:17-76
+37-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:30:27-73
+38                <category android:name="android.intent.category.BROWSABLE" />
+38-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:31:17-78
+38-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:31:27-75
+39
+40                <data
+40-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:33:17-35:62
+41                    android:host="@string/intent_host"
+41-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:34:21-55
+42                    android:scheme="@string/intent_scheme" />
+42-->/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/AndroidManifest.xml:35:21-59
+43            </intent-filter>
+44        </activity>
+45
+46        <service
+46-->[androidx.room:room-runtime:2.2.5] /Users/ricardogl/.gradle/caches/transforms-2/files-2.1/94408f450c40aad162bc9708d96445f2/room-runtime-2.2.5/AndroidManifest.xml:25:9-28:40
+47            android:name="androidx.room.MultiInstanceInvalidationService"
+47-->[androidx.room:room-runtime:2.2.5] /Users/ricardogl/.gradle/caches/transforms-2/files-2.1/94408f450c40aad162bc9708d96445f2/room-runtime-2.2.5/AndroidManifest.xml:26:13-74
+48            android:directBootAware="true"
+48-->[androidx.room:room-runtime:2.2.5] /Users/ricardogl/.gradle/caches/transforms-2/files-2.1/94408f450c40aad162bc9708d96445f2/room-runtime-2.2.5/AndroidManifest.xml:27:13-43
+49            android:exported="false" />
+49-->[androidx.room:room-runtime:2.2.5] /Users/ricardogl/.gradle/caches/transforms-2/files-2.1/94408f450c40aad162bc9708d96445f2/room-runtime-2.2.5/AndroidManifest.xml:28:13-37
+50    </application>
+51
+52</manifest>
