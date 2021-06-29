@@ -5,8 +5,10 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,12 +67,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         notifyDataSetChanged();
     }
     //Define a viewholder (First Step)
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView ivProfileImage;
         ImageView imgBody1;
         TextView tvBody;
         TextView tvScreenName;
+        TextView tvUserName;
         TextView tvTimeStamp;
+        Button btnFavorite, btnRetweet, btnReply;
+        TextView tvFavorite, tvRetweet, tvReply;
 
         public ViewHolder(@NotNull View itemView) {
             super(itemView);
@@ -78,12 +83,26 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             imgBody1 = itemView.findViewById(R.id.media);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvUserName = itemView.findViewById(R.id.tvUserName);
             tvTimeStamp = itemView.findViewById(R.id.timeStamp_txt);
+
+            btnFavorite = itemView.findViewById(R.id.btnFavorite);
+            btnRetweet = itemView.findViewById(R.id.btnRetweet);
+            btnReply = itemView.findViewById(R.id.btnReply);
+
+            tvFavorite = itemView.findViewById(R.id.tvFavorite);
+            tvRetweet = itemView.findViewById(R.id.tvRetweet);
+
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
-            tvScreenName.setText(tweet.user.screenName);
+            tvScreenName.setText(tweet.user.name);
+            tvUserName.setText("@"+tweet.user.screenName);
+            tvFavorite.setText(String.valueOf(tweet.favorite_count));
+            tvRetweet.setText(String.valueOf(tweet.retweet_count));
+
             Glide.with(context)
                     .load(tweet.user.profileImageUrl)
                     .into(ivProfileImage);
@@ -115,6 +134,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             }
 
             return relativeDate;
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(context, "Clicked!", Toast.LENGTH_SHORT).show();
         }
     }
 }
