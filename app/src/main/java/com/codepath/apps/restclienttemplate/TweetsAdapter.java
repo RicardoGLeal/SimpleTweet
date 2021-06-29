@@ -67,6 +67,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     //Define a viewholder (First Step)
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProfileImage;
+        ImageView imgBody1;
         TextView tvBody;
         TextView tvScreenName;
         TextView tvTimeStamp;
@@ -74,6 +75,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         public ViewHolder(@NotNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+            imgBody1 = itemView.findViewById(R.id.media);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTimeStamp = itemView.findViewById(R.id.timeStamp_txt);
@@ -86,6 +88,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     .load(tweet.user.profileImageUrl)
                     .into(ivProfileImage);
             tvTimeStamp.setText(getRelativeTimeAgo(tweet.createdAt));
+            if(!tweet.entities.media.isEmpty())
+            {
+                Glide.with(context)
+                        .load(tweet.entities.media.get(0))
+                        .into(imgBody1);
+            }
+            else {
+                Glide.with(context).clear(imgBody1);
+            }
         }
 
         // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");

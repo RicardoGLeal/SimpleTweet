@@ -25,6 +25,7 @@
         android:layout_marginTop="1dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:text="TextView"
+        android:textStyle="bold"
         tools:text="calamardo321" />
 
     <TextView
@@ -44,4 +45,62 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/media"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody"
+        android:layout_alignStart="@+id/tvScreenName"
+
+        android:scaleType="fitXY"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@id/tvBody"
+        android:layout_below="@+id/media"
+        android:layout_marginTop="5dp"
+        >
+
+
+        <Button
+            android:id="@+id/btnReply"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnFavorite"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/tvFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="134" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnRetweet"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:id="@+id/tvRetweet"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="7dp"
+            android:text="1200" />
+    </LinearLayout>
 </RelativeLayout>

@@ -1766,6 +1766,9 @@ id beginning
 id blocking
 id bottom
 id bounce
+id btnFavorite
+id btnReply
+id btnRetweet
 id btnTweet
 id buttonPanel
 id cache_measures
@@ -1877,6 +1880,7 @@ id inward
 id italic
 id item_touch_helper_previous_elevation
 id ivProfileImage
+id ivTweet
 id jumpToEnd
 id jumpToStart
 id labelGroup
@@ -1911,6 +1915,7 @@ id material_timepicker_mode_button
 id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
+id media
 id message
 id middle
 id mini
@@ -2088,7 +2093,12 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id tvBody
+id tvFavorite
+id tvName
+id tvRetweet
 id tvScreenName
+id tvTimeStamp
+id tvUserName
 id unchecked
 id uniform
 id unlabeled
@@ -2181,6 +2191,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout item_tweet
+layout item_tweet2
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider

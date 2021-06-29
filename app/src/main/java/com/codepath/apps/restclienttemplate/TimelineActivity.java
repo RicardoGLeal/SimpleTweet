@@ -52,14 +52,14 @@ public class TimelineActivity extends AppCompatActivity {
         //Find the recycler view
         rvTweets = findViewById(R.id.rvTweets);
 
-        logoutBtn = findViewById(R.id.logout_btn);
+        /*logoutBtn = findViewById(R.id.logout_btn);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 client.clearAccessToken();
                 finish();
             }
-        });
+        });*/
 
         swipeContainer = findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -101,6 +101,10 @@ public class TimelineActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ComposeActivity.class);
             startActivityForResult(intent, REQUEST_CODE);
             return true;
+        }
+        if(item.getItemId()== R.id.logout_btn){
+            client.clearAccessToken();
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
