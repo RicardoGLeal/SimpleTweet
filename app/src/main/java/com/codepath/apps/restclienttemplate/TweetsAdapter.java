@@ -110,6 +110,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvFavorite.setText(String.valueOf(tweet.favorite_count));
             tvRetweet.setText(String.valueOf(tweet.retweet_count));
             btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
+            btnRetweet.setBackgroundResource(R.drawable.ic_vector_retweet_stroke);
 
             Glide.with(context)
                     .load(tweet.user.profileImageUrl)
@@ -124,8 +125,12 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             else {
                 Glide.with(context).clear(imgBody1);
             }
+
             if (tweet.favorited) {
                 btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
+            }
+            if (tweet.retweeted) {
+                btnRetweet.setBackgroundResource(R.drawable.ic_vector_retweet);
             }
 
             btnFavorite.setOnClickListener(new View.OnClickListener() {
@@ -172,17 +177,34 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 }
             });
 
-            btnRetweet.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                btnRetweet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(!tweet.retweeted) {
+                            client.retweet(tweet.id, new JsonHttpResponseHandler() {
+                                @Override
+                                public void onSuccess(int statusCode, Headers headers, JSON json) {
+                                    btnRetweet.setBackgroundResource(R.drawable.ic_vector_retweet);
+                                    int retweets = Integer.valueOf(tvRetweet.getText().toString());
+                                    retweets += 1;
+                                    tvRetweet.setText(String.valueOf(retweets));
+                                    tweet.retweeted = true;
+                                    Toast.makeText(context, "Tweet Retweted!", Toast.LENGTH_SHORT).show();
+                                }
 
-                }
-            });
+                                @Override
+                                public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                                    Log.i("Retweet tweet", "failure" + response);
+                                }
+                            });
+                        }
+                    }
+                });
 
-        }
+            }
 
-        // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
-        public String getRelativeTimeAgo(String rawJsonDate) {
+            // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
+            public String getRelativeTimeAgo(String rawJsonDate) {
             String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
             SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
             sf.setLenient(true);
