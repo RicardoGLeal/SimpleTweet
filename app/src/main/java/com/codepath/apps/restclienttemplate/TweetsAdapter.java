@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.jetbrains.annotations.NotNull;
+import org.parceler.Parcels;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -115,7 +117,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Glide.with(context)
                     .load(tweet.user.profileImageUrl)
                     .into(ivProfileImage);
-            tvTimeStamp.setText(getRelativeTimeAgo(tweet.createdAt));
+            tvTimeStamp.setText(TimeStampController.getRelativeTimeAgo(tweet.createdAt));
+
+
             if(!tweet.entities.media.isEmpty())
             {
                 Glide.with(context)
@@ -125,7 +129,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             else {
                 Glide.with(context).clear(imgBody1);
             }
-
             if (tweet.favorited) {
                 btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
             }
@@ -203,27 +206,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             }
 
-            // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
-            public String getRelativeTimeAgo(String rawJsonDate) {
-            String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
-            SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
-            sf.setLenient(true);
-
-            String relativeDate = "";
-            try {
-                long dateMillis = sf.parse(rawJsonDate).getTime();
-                relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
-                        System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS, DateUtils.FORMAT_ABBREV_RELATIVE).toString();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            return relativeDate;
-        }
-
         @Override
         public void onClick(View view) {
             Toast.makeText(context, "Clicked!", Toast.LENGTH_SHORT).show();
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION)
+            {
+                Intent intent = new Intent(context, TweetDetailsActivity.class);
+                Tweet tweet = tweets.get(position);
+                intent.putExtra("tweet", Parcels.wrap(tweet));
+                context.startActivity(intent);
+            }
         }
     }
 }

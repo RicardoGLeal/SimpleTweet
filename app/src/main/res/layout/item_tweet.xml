@@ -69,13 +69,7 @@
             android:id="@+id/btnReply"
             android:layout_width="20dp"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_vector_messages_stroke"/>
-
-        <TextView
-            android:id="@+id/tvReplies"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="134" />
+            android:background="@drawable/ic_baseline_reply_24"/>
 
         <Space
             android:layout_width="0dp"

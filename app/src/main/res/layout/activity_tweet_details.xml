@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <ImageView
+        android:id="@+id/ivProfileImage_details"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvScreenName_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/ivProfileImage_details"
+        android:text="TextView"
+        android:textStyle="bold"
+        tools:text="calamardo321" />
+
+    <TextView
+        android:id="@+id/tvBody_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvScreenName_details"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="44dp"
+        android:layout_toEndOf="@+id/ivProfileImage_details"
+        tools:text="Hello World!" />
+
+
+    <ImageView
+        android:id="@+id/media_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody_details"
+
+        android:layout_centerInParent="true"
+        android:layout_marginTop="7dp"
+        android:scaleType="fitXY"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/timeStamp_txt_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/media_details"
+        android:text="TextView" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="?attr/colorControlHighlight"
+        android:layout_below="@+id/timeStamp_txt_details"/>
+
+  <LinearLayout
+      android:id="@+id/linearLayout1"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp"
+      android:layout_below="@id/line1">
+
+      <TextView
+          android:id="@+id/tvRetweet_details"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textStyle="bold"
+          android:text="100">
+      </TextView>
+      <TextView
+          android:layout_marginLeft="5dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="RETWEETS">
+      </TextView>
+      <TextView
+          android:id="@+id/tvFavorite_details"
+          android:layout_marginLeft="20dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textStyle="bold"
+          android:text="100">
+      </TextView>
+      <TextView
+          android:layout_marginLeft="5dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="FAVORITES">
+      </TextView>
+  </LinearLayout>
+
+    <View
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="?attr/colorControlHighlight"
+        android:layout_below="@+id/linearLayout1"/>
+
+    <LinearLayout
+        android:layout_width="344dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@id/tvBody_details"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/btnReply_details"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_baseline_reply_24"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnRetweet_details"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/ic_vector_retweet_stroke" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnFavorite_details"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_vector_heart_stroke" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnShare"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_baseline_share_24" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvUserName_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="23dp"
+        android:layout_toEndOf="@+id/ivProfileImage_details"
+        android:text="TextView" />
+
+</RelativeLayout>
