@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -98,8 +99,12 @@ public class TimelineActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.compose){
             //Compose icon has been selected
             //Navigate to the compose activity
-            Intent intent = new Intent(this, ComposeActivity.class);
-            startActivityForResult(intent, REQUEST_CODE);
+            FragmentManager fm = getSupportFragmentManager();
+            ComposeFragment composeFragment = ComposeFragment.newInstance();
+            composeFragment.show(fm, "ComposeTweet");
+
+            //Intent intent = new Intent(this, ComposeActivity.class);
+            //startActivityForResult(intent, REQUEST_CODE);
             return true;
         }
         if(item.getItemId()== R.id.logout_btn){
