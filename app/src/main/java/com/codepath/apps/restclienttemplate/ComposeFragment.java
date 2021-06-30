@@ -11,15 +11,14 @@
     import android.widget.EditText;
     import android.widget.Toast;
 
-    import androidx.annotation.NonNull;
     import androidx.annotation.Nullable;
     import androidx.fragment.app.DialogFragment;
 
+    import com.codepath.apps.restclienttemplate.Controllers.TwitterClient;
     import com.codepath.apps.restclienttemplate.models.Tweet;
     import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
     import com.google.android.material.textfield.TextInputLayout;
 
-    import org.jetbrains.annotations.NotNull;
     import org.json.JSONException;
     import org.parceler.Parcels;
 
