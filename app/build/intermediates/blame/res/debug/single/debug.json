@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_item_tweet2.xml.flat",
-        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/item_tweet2.xml"
-    },
-    {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_vector_home.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_vector_home.xml"
     },
@@ -16,10 +12,6 @@
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_vector_retweet.xml"
     },
     {
-        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable_ic_baseline_favorite_border_20.xml.flat",
-        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable/ic_baseline_favorite_border_20.xml"
-    },
-    {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_vector_retweet_stroke.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_vector_retweet_stroke.xml"
     },
@@ -28,12 +20,12 @@
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_activity_login.xml.flat",
-        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/activity_login.xml"
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_item_tweet_details.xml.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/item_tweet_details.xml"
     },
     {
-        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable_ic_baseline_favorite_border_24.xml.flat",
-        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml"
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_activity_login.xml.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/activity_login.xml"
     },
     {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable_button_blue.xml.flat",
@@ -50,6 +42,10 @@
     {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_activity_timeline.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/activity_timeline.xml"
+    },
+    {
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_vector_heart.xml.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_vector_heart.xml"
     },
     {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_launcher.png.flat",

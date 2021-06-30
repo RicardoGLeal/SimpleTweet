@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -23,14 +25,19 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import okhttp3.Headers;
+
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
     Context context;
     List<Tweet> tweets;
+    TwitterClient client;
 
     //Pass in the context and list of tweets.
-    public TweetsAdapter(Context context, List<Tweet> tweets) {
+    public TweetsAdapter(Context context, List<Tweet> tweets, TwitterClient client) {
         this.context = context;
         this.tweets = tweets;
+        this.client = client;
+
     }
 
     //For each row, inflate a layout
@@ -96,12 +103,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             itemView.setOnClickListener(this);
         }
 
-        public void bind(Tweet tweet) {
+        public void bind(final Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.name);
             tvUserName.setText("@"+tweet.user.screenName);
             tvFavorite.setText(String.valueOf(tweet.favorite_count));
             tvRetweet.setText(String.valueOf(tweet.retweet_count));
+            btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
 
             Glide.with(context)
                     .load(tweet.user.profileImageUrl)
@@ -116,6 +124,61 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             else {
                 Glide.with(context).clear(imgBody1);
             }
+            if (tweet.favorited) {
+                btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
+            }
+
+            btnFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!tweet.favorited) {
+                        client.setFavorite(tweet.id, new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                                btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
+                                int favorites = Integer.valueOf(tvFavorite.getText().toString()) ;
+                                favorites += 1;
+                                tvFavorite.setText(String.valueOf(favorites));
+                                tweet.favorited = true;
+                                Toast.makeText(context, "Tweet Liked!", Toast.LENGTH_SHORT).show();
+                                Log.i("Like tweet", "success");
+                            }
+
+                            @Override
+                            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                                Log.i("Like tweet", "failure" + response);
+                            }
+                        });
+                    }
+                    else {
+                        client.unsetFavorite(tweet.id, new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                                btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
+                                int favorites = Integer.valueOf(tvFavorite.getText().toString()) ;
+                                favorites -= 1;
+                                tvFavorite.setText(String.valueOf(favorites));
+                                tweet.favorited = false;
+                                Toast.makeText(context, "Tweet Disliked!", Toast.LENGTH_SHORT).show();
+                                Log.i("Unliked tweet", "success");
+                            }
+
+                            @Override
+                            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+                            }
+                        });
+                    }
+                }
+            });
+
+            btnRetweet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
         }
 
         // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");

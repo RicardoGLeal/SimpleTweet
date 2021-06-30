@@ -1638,8 +1638,6 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
-drawable ic_baseline_favorite_border_20
-drawable ic_baseline_favorite_border_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher
@@ -1648,6 +1646,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_vector_gif_pill_stroke
+drawable ic_vector_heart
 drawable ic_vector_heart_stroke
 drawable ic_vector_home
 drawable ic_vector_home_stroke
@@ -1895,7 +1894,6 @@ id inward
 id italic
 id item_touch_helper_previous_elevation
 id ivProfileImage
-id ivTweet
 id jumpToEnd
 id jumpToStart
 id labelGroup
@@ -2109,11 +2107,9 @@ id transition_transform
 id triangle
 id tvBody
 id tvFavorite
-id tvName
 id tvReplies
 id tvRetweet
 id tvScreenName
-id tvTimeStamp
 id tvUserName
 id unchecked
 id uniform
@@ -2207,7 +2203,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout item_tweet
-layout item_tweet2
+layout item_tweet_details
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider
