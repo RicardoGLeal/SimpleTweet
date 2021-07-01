@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,8 +50,14 @@ public class TimelineActivity extends AppCompatActivity {
         //Find the recycler view
         rvTweets = findViewById(R.id.rvTweets);
         fabCompose = findViewById(R.id.fabCompose);
-        setTitle("");
-        getSupportActionBar().setIcon(R.drawable.ic_vector_twitter_logo);
+
+
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarId);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+
+
 
 
         swipeContainer = findViewById(R.id.swipeContainer);

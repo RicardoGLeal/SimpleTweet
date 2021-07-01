@@ -7,13 +7,37 @@
     android:layout_height="match_parent"
     tools:context=".TimelineActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_vector_twitter_logo">
+
+        </ImageView>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:id="@+id/LineId"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="?attr/colorControlHighlight"
+        android:layout_below="@+id/toolbarId"/>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/LineId"
+        android:paddingTop="5dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTweets"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/logout_btn"

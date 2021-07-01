@@ -1731,6 +1731,7 @@ id BOTTOM_END
 id BOTTOM_START
 id CTRL
 id FUNCTION
+id LineId
 id META
 id NO_DEBUG
 id SHIFT
@@ -2146,6 +2147,7 @@ id title
 id titleDividerNoCustom
 id title_template
 id toggle
+id toolbarId
 id top
 id topPanel
 id touch_outside

@@ -1,19 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+    <style name="AppBaseTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-    </style>
+    <!-- <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+ </style>
 
-    <!-- Application theme. -->
+ <!-- Application theme. -->
     <!-- <style name="AppTheme" parent="AppBaseTheme">-->
          <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     <!--</style>-->
 
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
     <!--  <style name="NiceButton" parent="@android:style/Widget.Button">
          <item name="android:gravity">center_vertical|center_horizontal</item>
