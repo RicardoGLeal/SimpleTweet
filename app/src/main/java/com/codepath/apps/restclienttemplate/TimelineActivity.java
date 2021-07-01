@@ -12,11 +12,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import com.codepath.apps.restclienttemplate.Controllers.TwitterClient;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,8 +39,7 @@ public class TimelineActivity extends AppCompatActivity {
     RecyclerView rvTweets;
     List<Tweet> tweets;
     TweetsAdapter adapter;
-    Button logoutBtn;
-
+    FloatingActionButton fabCompose;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +48,10 @@ public class TimelineActivity extends AppCompatActivity {
         client = TwitterApp.getRestClient(this);
         //Find the recycler view
         rvTweets = findViewById(R.id.rvTweets);
+        fabCompose = findViewById(R.id.fabCompose);
+        setTitle("");
+        getSupportActionBar().setIcon(R.drawable.ic_vector_twitter_logo);
 
-        /*logoutBtn = findViewById(R.id.logout_btn);
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                client.clearAccessToken();
-                finish();
-            }
-        });*/
 
         swipeContainer = findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -75,12 +71,26 @@ public class TimelineActivity extends AppCompatActivity {
 
         //Init the list of tweets and adapter
         tweets = new ArrayList<>();
-        adapter = new TweetsAdapter(this, tweets, client);
+        adapter = new TweetsAdapter(this, tweets, client, this);
         //Recycler view setup: layout manager and the adapter.
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
 
         populateHomeTimeline();
+
+        fabCompose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Compose icon has been selected
+                //Navigate to the compose activity
+                FragmentManager fm = getSupportFragmentManager();
+                ComposeFragment composeFragment = ComposeFragment.newInstance();
+                composeFragment.show(fm, "ComposeTweet");
+
+                //Intent intent = new Intent(this, ComposeActivity.class);
+                //startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
     }
 
     @Override
@@ -91,7 +101,7 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.compose){
+       /* if(item.getItemId() == R.id.compose){
             //Compose icon has been selected
             //Navigate to the compose activity
             FragmentManager fm = getSupportFragmentManager();
@@ -101,7 +111,7 @@ public class TimelineActivity extends AppCompatActivity {
             //Intent intent = new Intent(this, ComposeActivity.class);
             //startActivityForResult(intent, REQUEST_CODE);
             return true;
-        }
+        }*/
         if(item.getItemId()== R.id.logout_btn){
             client.clearAccessToken();
             finish();
@@ -163,5 +173,16 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.e(TAG, "onFailure!" + response,throwable);
             }
         });
+    }
+
+    public void addTweet(Tweet tweet){
+        //Toast.makeText(getApplicationContext(), "Tweet submitted", Toast.LENGTH_LONG).show();
+        tweets.add(0, tweet);
+        adapter.notifyItemInserted(0);
+        scrollToTop();
+    }
+
+    public void scrollToTop(){
+        rvTweets.smoothScrollToPosition(0);
     }
 }

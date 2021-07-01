@@ -3,6 +3,7 @@ package com.codepath.apps.restclienttemplate;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.Controllers.TimeStampController;
+import com.codepath.apps.restclienttemplate.Controllers.TweetActions;
+import com.codepath.apps.restclienttemplate.Controllers.TwitterClient;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
@@ -25,6 +28,9 @@ public class TweetDetailsActivity extends AppCompatActivity {
     TextView tvTimeStamp;
     Button btnFavorite, btnRetweet, btnReply;
     TextView tvFavorite, tvRetweet;
+    TwitterClient client;
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +48,26 @@ public class TweetDetailsActivity extends AppCompatActivity {
         tvFavorite = findViewById(R.id.tvFavorite_details);
         tvRetweet = findViewById(R.id.tvRetweet_details);
 
+        client = TwitterApp.getRestClient(getBaseContext());
+
+        context = getBaseContext();
         Intent intent = getIntent();
         final Tweet tweet = Parcels.unwrap(intent.getParcelableExtra("tweet"));
+        //context = Parcels.unwrap(intent.getParcelableExtra("context"));
         loadResources(tweet);
     }
 
     private void loadResources(final Tweet tweet) {
+        btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
+        btnRetweet.setBackgroundResource(R.drawable.ic_vector_retweet_stroke);
         tvBody.setText(tweet.body);
+        if (tweet.favorited) {
+            btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
+        }
+        if (tweet.retweeted) {
+            btnRetweet.setBackgroundResource(R.drawable.ic_vector_retweet);
+        }
+
         Glide.with(getBaseContext())
                 .load(tweet.user.profileImageUrl)
                 .into(ivProfileImage);
@@ -67,12 +86,30 @@ public class TweetDetailsActivity extends AppCompatActivity {
         btnReply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TweetActions.ReplyTweet(getApplicationContext(), tweet);
                 FragmentManager fm = getSupportFragmentManager();
                 ComposeFragment composeFragment = ComposeFragment.newInstance(tweet.id, tweet.user.screenName);
                 composeFragment.show(fm, "ComposeTweet");
             }
         });
 
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TweetActions.LikeTweet(context,tweet,client,btnFavorite,tvFavorite);
+            }
+        });
 
+        btnRetweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TweetActions.Retweet(context,tweet,client,btnRetweet,tvRetweet);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAfterTransition();
     }
 }

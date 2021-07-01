@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="8dp">
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -45,12 +48,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
         android:text="TextView" />
 
     <ImageView
         android:id="@+id/media"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="170dp"
         android:layout_below="@+id/tvBody"
         android:layout_alignStart="@+id/tvScreenName"
         android:layout_centerVertical="true"
@@ -59,10 +63,20 @@
         android:scaleType="fitXY"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <View
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="?attr/colorControlHighlight"
+        android:layout_below="@+id/actionsBar"/>
+
     <LinearLayout
+        android:id="@+id/actionsBar"
         android:layout_width="344dp"
         android:layout_height="20dp"
         android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
         android:layout_alignStart="@id/tvBody"
         android:layout_below="@+id/media"
         android:layout_marginTop="5dp">
@@ -88,6 +102,7 @@
         <TextView
             android:id="@+id/tvRetweet"
             android:layout_width="wrap_content"
+            android:layout_marginLeft="5dp"
             android:layout_height="match_parent"
             android:text="134" />
         <Space
@@ -105,7 +120,7 @@
             android:id="@+id/tvFavorite"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="7dp"
+            android:layout_marginLeft="5dp"
             android:text="1200" />
     </LinearLayout>
 
@@ -117,5 +132,7 @@
         android:layout_marginStart="13dp"
         android:layout_toEndOf="@+id/tvScreenName"
         android:text="TextView" />
+
+
 
 </RelativeLayout>

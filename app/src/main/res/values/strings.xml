@@ -7,4 +7,5 @@
     <string name="intent_host">cprest</string>
     <string name="tweet">Tweet</string>
 
+    <string name="text">Light Mode</string>
 </resources>

@@ -9,6 +9,7 @@
     import android.view.WindowManager;
     import android.widget.Button;
     import android.widget.EditText;
+    import android.widget.TextView;
     import android.widget.Toast;
 
     import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@
 
     import org.json.JSONException;
     import org.parceler.Parcels;
+    import org.w3c.dom.Text;
 
     import okhttp3.Headers;
 
@@ -31,7 +33,9 @@
         EditText etCompose;
         Button btnTweet;
         TextInputLayout textInputLayout;
+        TextView tvreplyTo;
         TwitterClient client;
+        Boolean isReply;
 
         public ComposeFragment() {
         }
@@ -64,6 +68,8 @@
             client = TwitterApp.getRestClient(getContext());
             etCompose = view.findViewById(R.id.etCompose);
             btnTweet = view.findViewById(R.id.btnTweet);
+            tvreplyTo = view.findViewById(R.id.replyingToId);
+
             textInputLayout = view.findViewById(R.id.textInputLayout);
             textInputLayout.setCounterEnabled(true);
             textInputLayout.setCounterMaxLength(MAX_TWEET_LENGTH);
@@ -76,8 +82,16 @@
             final String username = getArguments().getString("username", "empty");
             final Long tweetid = getArguments().getLong("tweetId", 0);
 
-            if(username != "empty") {
-                etCompose.setText("@"+username);
+            if(username != "empty" && tweetid != 0) {
+                isReply = true;
+            } else {
+                isReply = false;
+            }
+                if(isReply) {
+                tvreplyTo.setVisibility(View.VISIBLE);
+                tvreplyTo.setText("Replying to @"+username);
+            } else {
+                tvreplyTo.setVisibility(View.GONE);
             }
 
             etCompose.requestFocus();
@@ -95,29 +109,24 @@
                         Toast.makeText(getContext(), "Sorry, your tweet is too long", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Toast.makeText(getContext(),tweetContent,Toast.LENGTH_SHORT).show();
+
                     //Make an API call to Twitter to publish the tweet.
-                    if(username != "empty" && tweetid != 0) {
+                    if(isReply) {
+                        tweetContent = "@"+username+" "+etCompose.getText().toString();
                         client.replyToTweet(tweetid, tweetContent, new JsonHttpResponseHandler() {
                             @Override
                             public void onSuccess(int statusCode, Headers headers, JSON json) {
                                 Log.i(TAG, "onSuccess replying to the tweet");
                                 Toast.makeText(getContext(), "onSuccess replying to the tweet!", Toast.LENGTH_SHORT).show();
-
                                 try {
                                     Tweet tweet = Tweet.fromJson(json.jsonObject);
-                                    Intent intent = new Intent();
-                                    intent.putExtra("tweet", Parcels.wrap(tweet));
-                                    //set result code and bundle data for response
-                                    //setResult(RESULT_OK, intent);
+                                    ((TimelineActivity)getActivity()).addTweet(tweet);
                                     //closes the activity, pass data to parent
                                     dismiss();
-                                    //finish();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
-
                             @Override
                             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                                 Log.e(TAG, "onFailure to reply to that tweet", throwable);
@@ -132,18 +141,13 @@
                                 Log.i(TAG, "onSuccess to publish tweet");
                                 try {
                                     Tweet tweet = Tweet.fromJson(json.jsonObject);
-                                    Intent intent = new Intent();
-                                    intent.putExtra("tweet", Parcels.wrap(tweet));
-                                    //set result code and bundle data for response
-                                    //setResult(RESULT_OK, intent);
+                                    ((TimelineActivity)getActivity()).addTweet(tweet);
                                     //closes the activity, pass data to parent
                                     dismiss();
-                                    //finish();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
-
                             @Override
                             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                                 Log.e(TAG, "onFailure to publish tweet", throwable);

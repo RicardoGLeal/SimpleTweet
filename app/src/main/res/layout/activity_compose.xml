@@ -7,12 +7,26 @@
     android:layout_height="match_parent"
 
     tools:context=".ComposeActivity">
+
+    <TextView
+        android:id="@+id/replyingToId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        tools:text="Replying to">
+    </TextView>
+
+
 <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/textInputLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_below="@id/replyingToId"
     app:counterEnabled="true"
     app:counterMaxLength="10">
+
 
     <EditText
         android:id="@+id/etCompose"

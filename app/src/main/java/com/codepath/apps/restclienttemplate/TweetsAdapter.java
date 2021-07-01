@@ -17,6 +17,10 @@
         import androidx.recyclerview.widget.RecyclerView;
 
         import com.bumptech.glide.Glide;
+        import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+        import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+        import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+        import com.bumptech.glide.request.RequestOptions;
         import com.codepath.apps.restclienttemplate.Controllers.TimeStampController;
         import com.codepath.apps.restclienttemplate.Controllers.TweetActions;
         import com.codepath.apps.restclienttemplate.Controllers.TwitterClient;
@@ -34,13 +38,14 @@
             Context context;
             List<Tweet> tweets;
             TwitterClient client;
+            TimelineActivity timelineActivity;
 
             //Pass in the context and list of tweets.
-            public TweetsAdapter(Context context, List<Tweet> tweets, TwitterClient client) {
+            public TweetsAdapter(Context context, List<Tweet> tweets, TwitterClient client, TimelineActivity timelineActivity) {
                 this.context = context;
                 this.tweets = tweets;
                 this.client = client;
-
+                this.timelineActivity = timelineActivity;
             }
 
             //For each row, inflate a layout
@@ -115,21 +120,31 @@
                     btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
                     btnRetweet.setBackgroundResource(R.drawable.ic_vector_retweet_stroke);
 
+                    RequestOptions circleProp = new RequestOptions();
+                    circleProp = circleProp.transform(new CircleCrop());
+
                     Glide.with(context)
                             .load(tweet.user.profileImageUrl)
+                            .apply(circleProp)
                             .into(ivProfileImage);
                     tvTimeStamp.setText(TimeStampController.getRelativeTimeAgo(tweet.createdAt));
 
 
                     if(!tweet.entities.media.isEmpty())
                     {
+                        imgBody1.setVisibility(View.VISIBLE);
+                        RequestOptions mediaOptions = new RequestOptions();
+                        mediaOptions = mediaOptions.transforms(new CenterCrop(), new RoundedCorners(20));
                         Glide.with(context)
                                 .load(tweet.entities.media.get(0))
+                                .apply(mediaOptions)
                                 .into(imgBody1);
                     }
                     else {
                         Glide.with(context).clear(imgBody1);
+                        imgBody1.setVisibility(View.GONE);
                     }
+
                     if (tweet.favorited) {
                         btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
                     }
@@ -148,7 +163,7 @@
                     btnRetweet.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            TweetActions.Retweet(context,tweet,client,btnRetweet,tvRetweet);
+                            TweetActions.Retweet(context,tweet,client,btnRetweet,tvRetweet,timelineActivity);
                         }
                     });
 
