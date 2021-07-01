@@ -5,13 +5,7 @@
 
     <item
         android:id="@+id/logout_btn"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/ic_baseline_menu"
         android:title="Logout"
         app:showAsAction="" />
-    <item
-        android:id="@+id/compose"
-        android:icon="@drawable/ic_vector_compose"
-        android:iconTint="#FFFFFF"
-        android:title="Compose"
-        app:showAsAction="always" />
 </menu>

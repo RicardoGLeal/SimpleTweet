@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
@@ -53,7 +54,10 @@ public class TweetDetailsActivity extends AppCompatActivity {
         context = getBaseContext();
         Intent intent = getIntent();
         final Tweet tweet = Parcels.unwrap(intent.getParcelableExtra("tweet"));
-        //context = Parcels.unwrap(intent.getParcelableExtra("context"));
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarId);
+        toolbar.setTitle("Tweet");
+        setSupportActionBar(toolbar);
         loadResources(tweet);
     }
 

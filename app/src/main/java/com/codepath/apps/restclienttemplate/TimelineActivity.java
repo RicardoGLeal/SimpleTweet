@@ -51,14 +51,10 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets = findViewById(R.id.rvTweets);
         fabCompose = findViewById(R.id.fabCompose);
 
-
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarId);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-
-
-
 
         swipeContainer = findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

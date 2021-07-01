@@ -12,13 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:background="@drawable/ic_vector_twitter_logo">
-
         </ImageView>
-
     </androidx.appcompat.widget.Toolbar>
 
     <View
@@ -37,7 +35,6 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTweets"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/logout_btn"

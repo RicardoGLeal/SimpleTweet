@@ -24,16 +24,20 @@
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_vector_retweet_stroke.xml"
     },
     {
-        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_launcher.png.flat",
-        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_launcher.png"
-    },
-    {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_vector_compose.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_vector_compose.xml"
     },
     {
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_activity_login.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable_ic_baseline_menu.xml.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable/ic_baseline_menu.xml"
     },
     {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_capsule_bg.xml.flat",
@@ -46,6 +50,10 @@
     {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_vector_person_stroke.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_vector_person_stroke.xml"
+    },
+    {
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable_ic_baseline_chat_bubble.xml.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable/ic_baseline_chat_bubble.xml"
     },
     {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_vector_photo_stroke.xml.flat",

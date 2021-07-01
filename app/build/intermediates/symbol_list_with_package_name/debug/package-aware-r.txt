@@ -1667,6 +1667,8 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_baseline_chat_bubble
+drawable ic_baseline_menu
 drawable ic_baseline_reply_24
 drawable ic_baseline_share_24
 drawable ic_clock_black_24dp
@@ -1845,7 +1847,6 @@ id clip_horizontal
 id clip_vertical
 id clockwise
 id collapseActionView
-id compose
 id confirm_button
 id container
 id content
