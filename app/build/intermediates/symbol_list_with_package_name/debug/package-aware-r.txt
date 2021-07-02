@@ -1175,6 +1175,7 @@ color twitter_blue
 color twitter_blue_30
 color twitter_blue_50
 color twitter_blue_fill_pressed
+color white
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -1660,6 +1661,8 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable button_blue
+drawable button_dark_blue
+drawable button_pressed_dark_blue
 drawable capsule_bg
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
@@ -1693,6 +1696,7 @@ drawable ic_vector_retweet
 drawable ic_vector_retweet_stroke
 drawable ic_vector_search_stroke
 drawable ic_vector_twitter_logo
+drawable login_button
 drawable material_cursor_drawable
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
@@ -1804,6 +1808,7 @@ id all
 id always
 id animateToEnd
 id animateToStart
+id appbarlayout
 id asConfigured
 id async
 id auto
@@ -1952,6 +1957,7 @@ id linearLayout1
 id linearLayout2
 id listMode
 id list_item
+id logo
 id logout_btn
 id masked
 id material_clock_display
@@ -2170,6 +2176,7 @@ id tvScreenName
 id tvScreenName_details
 id tvUserName
 id tvUserName_details
+id twitterlogo1
 id unchecked
 id uniform
 id unlabeled

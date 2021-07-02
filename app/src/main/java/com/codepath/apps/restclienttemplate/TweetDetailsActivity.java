@@ -54,7 +54,7 @@ public class TweetDetailsActivity extends AppCompatActivity {
         btnFavorite = binding.btnFavoriteDetails;
         btnReply = binding.btnReplyDetails;
         btnRetweet = binding.btnRetweetDetails;
-        tvFavorite = binding.btnFavoriteDetails;
+        tvFavorite = binding.tvFavoriteDetails;
         tvRetweet = binding.tvRetweetDetails;
 
         client = TwitterApp.getRestClient(getBaseContext());

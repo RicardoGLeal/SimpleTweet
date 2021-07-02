@@ -46,7 +46,7 @@ public class TimelineActivity extends AppCompatActivity {
     TweetsAdapter adapter;
     FloatingActionButton fabCompose;
     Long maxId;
-
+    Toolbar toolbar;
     // Store a member variable for the listener
     private EndlessRecyclerViewScrollListener scrollListener;
 
@@ -62,7 +62,7 @@ public class TimelineActivity extends AppCompatActivity {
         fabCompose = binding.fabCompose;
 
         // Sets the Toolbar to act as the ActionBar for this Activity window.
-        Toolbar toolbar = binding.toolbarId;
+        toolbar = binding.toolbarId;
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         toolbar.setTitle("Loading...");
@@ -131,17 +131,7 @@ public class TimelineActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       /* if(item.getItemId() == R.id.compose){
-            //Compose icon has been selected
-            //Navigate to the compose activity
-            FragmentManager fm = getSupportFragmentManager();
-            ComposeFragment composeFragment = ComposeFragment.newInstance();
-            composeFragment.show(fm, "ComposeTweet");
 
-            //Intent intent = new Intent(this, ComposeActivity.class);
-            //startActivityForResult(intent, REQUEST_CODE);
-            return true;
-        }*/
         if(item.getItemId()== R.id.logout_btn){
             client.clearAccessToken();
             finish();
@@ -234,14 +224,14 @@ public class TimelineActivity extends AppCompatActivity {
     public void loadNextDataFromApi(int offset) {
         // Send an API request to retrieve appropriate paginated data
         //  --> Send the request including an offset value (i.e `page`) as a query parameter.
-        maxId = Long.valueOf(tweets.get(tweets.size()-1).id);
+        maxId = Long.valueOf(tweets.get(tweets.size()-1).id)-1;
         client.getNextTimeline(maxId, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 try {
                     adapter.addAll(Tweet.fromJsonArray(json.jsonArray));
                     adapter.notifyDataSetChanged();
-                    maxId = Long.valueOf(tweets.get(tweets.size()-1).id);
+                    maxId = Long.valueOf(tweets.get(tweets.size()-1).id)-1;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

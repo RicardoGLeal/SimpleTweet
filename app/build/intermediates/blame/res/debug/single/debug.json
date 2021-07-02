@@ -8,6 +8,10 @@
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable/ic_baseline_share_24.xml"
     },
     {
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable_login_button.xml.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable/login_button.xml"
+    },
+    {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_vector_home.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/ic_vector_home.xml"
     },
@@ -64,6 +68,10 @@
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable/ic_vector_twitter_logo.xml"
     },
     {
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable_button_dark_blue.xml.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable/button_dark_blue.xml"
+    },
+    {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_activity_timeline.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/activity_timeline.xml"
     },
@@ -118,6 +126,10 @@
     {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/layout_activity_compose.xml.flat",
         "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/layout/activity_compose.xml"
+    },
+    {
+        "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_button_pressed_dark_blue.xml.flat",
+        "source": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/src/main/res/drawable-xhdpi/button_pressed_dark_blue.xml"
     },
     {
         "merged": "/Users/ricardogl/Documents/AndroidStudioProjects/ST/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_vector_messages_stroke.xml.flat",

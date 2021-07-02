@@ -4,9 +4,7 @@
     <color name="colorPrimaryDark">#1370a9</color>
     <color name="colorAccent">#1da1f2</color>
     <color name="textColor">#333232</color>
-
-
-
+    <color name="white">#ffffff</color>
     <color name="medium_green">#ff17bf63</color>
     <color name="medium_gray">#ffaab8c2</color>
     <color name="medium_gray_30">#4daab8c2</color>
