@@ -8,6 +8,12 @@ import java.util.Date;
 import java.util.Locale;
 
 public class TimeStampController {
+
+    /**
+     * Returns the date and time a tweet was posted
+     * @param rawJsonDate the timestamp of the tweet.
+     * @return the date and time a tweet was posted
+     */
     public static String getDate(String rawJsonDate){
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
@@ -24,6 +30,11 @@ public class TimeStampController {
     }
 
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
+    /**
+     * Returns how long ago a tweet was posted
+     * @param rawJsonDate the timestamp of the tweet.
+     * @return how long ago a tweet was posted
+     */
     public static String getRelativeTimeAgo(String rawJsonDate) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);

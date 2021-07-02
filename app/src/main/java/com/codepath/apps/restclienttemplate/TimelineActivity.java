@@ -139,6 +139,10 @@ public class TimelineActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Implemented when the user pulls to refresh. The entire timeline is cleaned.
+     * @param page
+     */
     public void fetchTimelineAsync(int page) {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override

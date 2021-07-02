@@ -26,6 +26,7 @@
 
     import okhttp3.Headers;
 
+
     public class ComposeFragment extends DialogFragment {
 
         public static final String TAG = "ComposeActivity";
@@ -37,9 +38,16 @@
         TwitterClient client;
         Boolean isReply;
 
+        /**
+         * Empty constructor needed to create fragments.
+         */
         public ComposeFragment() {
         }
 
+        /**
+         * Method used to instantiate a tweet when composing a new tweet
+         * @return ComposeFragment
+         */
         public static ComposeFragment newInstance() {
             ComposeFragment frag = new ComposeFragment();
             Bundle args = new Bundle();
@@ -47,6 +55,12 @@
             return frag;
         }
 
+        /**
+         * Method used to instantiate a tweet when replying to a tweet
+         * @param tweetId id of the tweet
+         * @param username tweet owner username
+         * @return ComposeFragment
+         */
         public static ComposeFragment newInstance(long tweetId, String username) {
             ComposeFragment frag = new ComposeFragment();
             Bundle args = new Bundle();
@@ -56,6 +70,13 @@
             return frag;
         }
 
+        /**
+         * Inflates the layout.
+         * @param inflater
+         * @param container
+         * @param savedInstanceState
+         * @return
+         */
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             return inflater.inflate(R.layout.activity_compose, container);
@@ -64,7 +85,7 @@
         @Override
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            // Get field from view
+            // Get fields from view
             client = TwitterApp.getRestClient(getContext());
             etCompose = view.findViewById(R.id.etCompose);
             btnTweet = view.findViewById(R.id.btnTweet);
@@ -75,12 +96,13 @@
             textInputLayout.setCounterMaxLength(MAX_TWEET_LENGTH);
 
             // Show soft keyboard automatically and request focus to field
-
             getDialog().getWindow().setSoftInputMode(
                     WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
+            //Get the username and tweetid passed from the activity.
             final String username = getArguments().getString("username", "empty");
             final Long tweetid = getArguments().getLong("tweetId", 0);
+
 
             if(username != "empty" && tweetid != 0) {
                 isReply = true;
@@ -110,9 +132,10 @@
                         return;
                     }
 
-                    //Make an API call to Twitter to publish the tweet.
+                    //If the tweet is a reply...
                     if(isReply) {
                         tweetContent = "@"+username+" "+etCompose.getText().toString();
+                        //calls an endpoint of the API to reply to that tweet.
                         client.replyToTweet(tweetid, tweetContent, new JsonHttpResponseHandler() {
                             @Override
                             public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -134,7 +157,8 @@
                             }
                         });
                     }
-                    else {
+                    else { //The tweet is not a reply, is a new tweet.
+                        //Calls an endpoint from the API call to publish the tweet.
                         client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
                             @Override
                             public void onSuccess(int statusCode, Headers headers, JSON json) {

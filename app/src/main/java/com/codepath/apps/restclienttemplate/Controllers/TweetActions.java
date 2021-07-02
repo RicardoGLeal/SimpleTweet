@@ -20,6 +20,14 @@
 
     public class TweetActions {
 
+        /**
+         * It is responsible for carrying out the function of liking or disliking a tweet. Change the color of the icon and update the value of the number of likes.
+         * @param context context
+         * @param tweet tweet
+         * @param client client
+         * @param btnFavorite The button that was pressed
+         * @param tvFavorite The textView that shows the number of likes.
+         */
         public static void LikeTweet(final Context context, final Tweet tweet, TwitterClient client, final Button btnFavorite, final TextView tvFavorite) {
             if(!tweet.favorited) {
                 client.setFavorite(tweet.id, new JsonHttpResponseHandler() {
@@ -41,7 +49,7 @@
                     }
                 });
             }
-            else {
+            else { //dislike tweet.
                 client.unsetFavorite(tweet.id, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -62,12 +70,30 @@
                 });
             }
         }
+
+        /**
+         * is responsible for performing the function of replying to a tweet.
+         * It commands to call the compose fragment initializing it with the parameters of the tweet
+         * id and the username
+         * @param context context
+         * @param tweet tweet
+         */
         public static void ReplyTweet(final Context context, final Tweet tweet) {
             FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
             ComposeFragment composeFragment = ComposeFragment.newInstance(tweet.id, tweet.user.screenName);
             composeFragment.show(fm, "ComposeTweet");
         }
 
+        /**
+         * It is responsible for performing the function of retweeting to a tweet in the TimeLineActivity.
+         * Changes the color of the icon and update the value of the number of retweets.
+         * @param context context
+         * @param tweet tweet
+         * @param client client
+         * @param btnRetweet button of retweet.
+         * @param tvRetweet textView of the number of retweets.
+         * @param timelineActivity timelineActivity
+         */
         public static void Retweet(final Context context, final Tweet tweet, TwitterClient client, final Button btnRetweet, final TextView tvRetweet, final TimelineActivity timelineActivity) {
                 if(!tweet.retweeted) {
                         client.retweet(tweet.id, new JsonHttpResponseHandler() {
@@ -91,6 +117,15 @@
                     }
                 }
 
+        /**
+         * It is responsible for performing the function of retweeting to a tweet in the TweetDetailsActivity.
+         * Changes the color of the icon and update the value of the number of retweets.
+         * @param context context
+         * @param tweet tweet
+         * @param client client
+         * @param btnRetweet button of retweet.
+         * @param tvRetweet textView of the number of retweets.
+         */
         public static void Retweet(final Context context, final Tweet tweet, TwitterClient client, final Button btnRetweet, final TextView tvRetweet) {
             if(!tweet.retweeted) {
                 client.retweet(tweet.id, new JsonHttpResponseHandler() {

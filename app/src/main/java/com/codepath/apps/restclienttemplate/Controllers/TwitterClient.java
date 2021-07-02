@@ -46,6 +46,11 @@ public class TwitterClient extends OAuthBaseClient {
 	}
 	// CHANGE THIS
 	// DEFINE METHODS for different API endpoints here
+
+	/**
+	 * API endpoint responsible for getting the initial tweets of the timeline
+	 * @param handler JsonHttpResponseHandler
+	 */
 	public void getHomeTimeline(JsonHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
 		// Can specify query string params directly or through RequestParams.
@@ -55,6 +60,11 @@ public class TwitterClient extends OAuthBaseClient {
 		client.get(apiUrl, params, handler);
 	}
 
+	/**
+	 * API endpoint responsible for getting tweets of the timeline
+	 * @param maxId the maximum id of the tweet
+	 * @param handler JsonHttpResponseHandler
+	 */
 	public void getNextTimeline(long maxId, JsonHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
 		// Can specify query string params directly or through RequestParams.
@@ -64,7 +74,11 @@ public class TwitterClient extends OAuthBaseClient {
 		client.get(apiUrl, params, handler);
 	}
 
-
+	/**
+	 * API endpoint responsible for posting a new tweet
+	 * @param tweetContent message of the tweet.
+	 * @param handler JsonHttpResponseHandler
+	 */
 	public void publishTweet(String tweetContent, JsonHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/update.json");
 		// Can specify query string params directly or through RequestParams.
@@ -73,6 +87,12 @@ public class TwitterClient extends OAuthBaseClient {
 		client.post(apiUrl, params, "", handler);
 	}
 
+	/**
+	 * API endpoint responsible for replying to a tweet
+	 * @param id id of the tweet.
+	 * @param tweetContent message of the tweet.
+	 * @param handler JsonHttpResponseHandler
+	 */
 	public void replyToTweet(long id, String tweetContent, JsonHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/update.json");
 		// Can specify query string params directly or through RequestParams.
@@ -82,6 +102,11 @@ public class TwitterClient extends OAuthBaseClient {
 		client.post(apiUrl, params, "", handler);
 	}
 
+	/**
+	 * API endpoint responsible for liking a tweet
+	 * @param tweetId id of the tweet.
+	 * @param handler JsonHttpResponseHandler
+	 */
 	public void setFavorite(Long tweetId, JsonHttpResponseHandler handler)
 	{
 		String apiUrl = getApiUrl("favorites/create.json");
@@ -90,6 +115,11 @@ public class TwitterClient extends OAuthBaseClient {
 		client.post(apiUrl, params, "", handler);
 	}
 
+	/**
+	 * API endpoint responsible for disliking a tweet
+	 * @param tweetId id of the tweet.
+	 * @param handler JsonHttpResponseHandler
+	 */
 	public void unsetFavorite(Long tweetId, JsonHttpResponseHandler handler)
 	{
 		String apiUrl = getApiUrl("favorites/destroy.json");
@@ -98,6 +128,11 @@ public class TwitterClient extends OAuthBaseClient {
 		client.post(apiUrl, params, "", handler);
 	}
 
+	/**
+	 * API endpoint responsible for retweeting a tweet
+	 * @param tweetId id of the tweet.
+	 * @param handler JsonHttpResponseHandler
+	 */
 	public void retweet(Long tweetId, JsonHttpResponseHandler handler)
 	{
 		String apiUrl = getApiUrl("statuses/retweet/"+tweetId+".json");
