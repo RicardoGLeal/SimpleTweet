@@ -35,12 +35,18 @@ The following **optional** features are implemented:
 * [X] Replace all icon drawables and other static image assets with [vector drawables](http://guides.codepath.org/android/Drawables#vector-drawables) where appropriate.
 * [ ] User can view following / followers list through any profile they view.
 * [X] Use the View Binding library to reduce view boilerplate.
-* [ ] On the Twitter timeline, apply scrolling effects such as [hiding/showing the toolbar](http://guides.codepath.org/android/Using-the-App-ToolBar#reacting-to-scroll) by implementing [CoordinatorLayout](http://guides.codepath.org/android/Handling-Scrolls-with-CoordinatorLayout#responding-to-scroll-events).
+* [X] On the Twitter timeline, apply scrolling effects such as [hiding/showing the toolbar](http://guides.codepath.org/android/Using-the-App-ToolBar#reacting-to-scroll) by implementing [CoordinatorLayout](http://guides.codepath.org/android/Handling-Scrolls-with-CoordinatorLayout#responding-to-scroll-events).
 * [ ] User can **open the twitter app offline and see last loaded tweets**. Persisted in SQLite tweets are refreshed on every application launch. While "live data" is displayed when app can get it from Twitter API, it is also saved for use in offline mode.
 
 The following **additional** features are implemented:
+* Implemented a Floating Action Button to compose tweets.
+* The user can reply, take favorite (and unfavorite) and retweet in the TimelineActivity and also in the TweetDetailsActivity
 
 * [ ] List anything else that you can get done to improve the app functionality!
+* Implement a database
+* View my profile
+* View other profiles
+* Delete tweets
 
 ## Video Walkthrough
 
@@ -52,7 +58,9 @@ GIF created with [Kap](https://getkap.co/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+* At certain point I was stuck when I was trying to get the media of a tweet from the API, but I figured out that I just had to a single image, so it was easier than what I thought.
+
+* I really enjoyed implementing Twitter API in this app.
 
 ## Open-source libraries used
 
@@ -61,7 +69,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2021] [Ricardo Gonzalez Leal]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
