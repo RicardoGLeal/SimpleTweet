@@ -15,8 +15,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.Controllers.TwitterClient;
+import com.codepath.apps.restclienttemplate.databinding.ActivityTimelineBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,6 +35,7 @@ import okhttp3.Headers;
 
 public class TimelineActivity extends AppCompatActivity {
 
+    ActivityTimelineBinding binding;
     public static final String TAG = "TimelineActivity";
     public final int REQUEST_CODE = 20; //For retrieving the posted tweet.
     private SwipeRefreshLayout swipeContainer;
@@ -41,28 +45,35 @@ public class TimelineActivity extends AppCompatActivity {
     List<Tweet> tweets;
     TweetsAdapter adapter;
     FloatingActionButton fabCompose;
+    Long maxId;
+
+    // Store a member variable for the listener
+    private EndlessRecyclerViewScrollListener scrollListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+        binding = ActivityTimelineBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         client = TwitterApp.getRestClient(this);
         //Find the recycler view
-        rvTweets = findViewById(R.id.rvTweets);
-        fabCompose = findViewById(R.id.fabCompose);
+        rvTweets = binding.rvTweets;
+        fabCompose = binding.fabCompose;
 
         // Sets the Toolbar to act as the ActionBar for this Activity window.
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarId);
+        Toolbar toolbar = binding.toolbarId;
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Loading...");
+        swipeContainer = binding.swipeContainer;
 
-        swipeContainer = findViewById(R.id.swipeContainer);
+        /**
+         * OnClickListener implemented when the user pulls to refresh.
+         */
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-            // Your code to refresh the list here.
-            // Make sure you call swipeContainer.setRefreshing(false)
-            // once the network request has completed successfully.
             fetchTimelineAsync(0);
             }
         });
@@ -75,23 +86,34 @@ public class TimelineActivity extends AppCompatActivity {
         //Init the list of tweets and adapter
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(this, tweets, client, this);
-        //Recycler view setup: layout manager and the adapter.
-        rvTweets.setLayoutManager(new LinearLayoutManager(this));
+
+        //Recycler view setup: layout manager and the adapter
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rvTweets.setLayoutManager(linearLayoutManager);
         rvTweets.setAdapter(adapter);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                loadNextDataFromApi(page);
+            }
+        };
+        // Adds the scroll listener to RecyclerView
+        rvTweets.addOnScrollListener(scrollListener);
+
 
         populateHomeTimeline();
 
+        /**
+         * OnClickListener of the Compose button. Compose icon has been selected
+         */
         fabCompose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Compose icon has been selected
-                //Navigate to the compose activity
+                //Creates a new fragment and shows it.
                 FragmentManager fm = getSupportFragmentManager();
                 ComposeFragment composeFragment = ComposeFragment.newInstance();
                 composeFragment.show(fm, "ComposeTweet");
-
-                //Intent intent = new Intent(this, ComposeActivity.class);
-                //startActivityForResult(intent, REQUEST_CODE);
             }
         });
     }
@@ -102,6 +124,11 @@ public class TimelineActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * This function is call when the user clicks on a item that is inside of the Menu.
+     * @param item The item pressed in the menu.
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
        /* if(item.getItemId() == R.id.compose){
@@ -131,13 +158,16 @@ public class TimelineActivity extends AppCompatActivity {
                 populateHomeTimeline();
                 adapter.addAll(tweets);
                 swipeContainer.setRefreshing(false);
+                getSupportActionBar().setTitle("Twitter");
             }
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                 Log.d("DEBUG", "Fetch timeline error: " + throwable.toString());
+                getSupportActionBar().setTitle("Twitter");
             }
         });
+        ;
     }
     //For retrieving the posted tweet.
     @Override
@@ -155,6 +185,9 @@ public class TimelineActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    /**
+     * This function it is in charge of calling the API to obtain all the tweets that will be shown in the timeline.
+     */
     private void populateHomeTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
@@ -168,16 +201,20 @@ public class TimelineActivity extends AppCompatActivity {
                     Log.e(TAG, "Json exception", e);
                     e.printStackTrace();
                 }
-
+                getSupportActionBar().setTitle("Twitter");
             }
-
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                 Log.e(TAG, "onFailure!" + response,throwable);
+                getSupportActionBar().setTitle("Twitter");
             }
         });
     }
 
+    /**
+     * A tweet is added to the tweet list and the adapter is notified that a new item was inserted at startup.
+     * @param tweet The tweet to be added to the timeline
+     */
     public void addTweet(Tweet tweet){
         //Toast.makeText(getApplicationContext(), "Tweet submitted", Toast.LENGTH_LONG).show();
         tweets.add(0, tweet);
@@ -185,7 +222,37 @@ public class TimelineActivity extends AppCompatActivity {
         scrollToTop();
     }
 
+    /**
+     * A scroll is made to the first tweet.
+     */
     public void scrollToTop(){
         rvTweets.smoothScrollToPosition(0);
+    }
+
+    // Append the next page of data into the adapter
+    // This method probably sends out a network request and appends new data items to your adapter.
+    public void loadNextDataFromApi(int offset) {
+        // Send an API request to retrieve appropriate paginated data
+        //  --> Send the request including an offset value (i.e `page`) as a query parameter.
+        maxId = Long.valueOf(tweets.get(tweets.size()-1).id);
+        client.getNextTimeline(maxId, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                try {
+                    adapter.addAll(Tweet.fromJsonArray(json.jsonArray));
+                    adapter.notifyDataSetChanged();
+                    maxId = Long.valueOf(tweets.get(tweets.size()-1).id);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+            }
+        });
+        //  --> Deserialize and construct new model objects from the API response
+        //  --> Append the new data objects to the existing set of items inside the array of items
+        //  --> Notify the adapter of the new items made with `notifyItemRangeInserted()`
     }
 }

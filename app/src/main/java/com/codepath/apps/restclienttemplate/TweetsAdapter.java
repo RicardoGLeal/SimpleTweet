@@ -65,12 +65,18 @@
                 holder.bind(tweet);
             }
 
+            /**
+             * Returns the total count of items in the List.
+             * @return total count of items in the List.
+             */
             @Override
             public int getItemCount() {
                 return tweets.size();
             }
 
-            // Clean all elements of the recycler
+            /**
+             * Clean all elements of the recycler
+             */
             public void clear() {
                 tweets.clear();
                 notifyDataSetChanged();

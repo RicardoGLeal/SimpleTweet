@@ -16,11 +16,13 @@ import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.Controllers.TimeStampController;
 import com.codepath.apps.restclienttemplate.Controllers.TweetActions;
 import com.codepath.apps.restclienttemplate.Controllers.TwitterClient;
+import com.codepath.apps.restclienttemplate.databinding.ActivityTweetDetailsBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
 
 public class TweetDetailsActivity extends AppCompatActivity {
+    ActivityTweetDetailsBinding binding;
     TextView tvBody;
     ImageView ivProfileImage;
     ImageView media;
@@ -32,49 +34,69 @@ public class TweetDetailsActivity extends AppCompatActivity {
     TwitterClient client;
     Context context;
 
+    /**
+     * Load the activity and find all the references of the objects.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tweet_details);
+        binding = ActivityTweetDetailsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        tvBody = findViewById(R.id.tvBody_details);
-        ivProfileImage = findViewById(R.id.ivProfileImage_details);
-        media = findViewById(R.id.media_details);
-        tvScreenName = findViewById(R.id.tvScreenName_details);
-        tvUserName = findViewById(R.id.tvUserName_details);
-        tvTimeStamp = findViewById(R.id.timeStamp_txt_details);
-        btnFavorite = findViewById(R.id.btnFavorite_details);
-        btnReply = findViewById(R.id.btnReply_details);
-        btnRetweet = findViewById(R.id.btnRetweet_details);
-        tvFavorite = findViewById(R.id.tvFavorite_details);
-        tvRetweet = findViewById(R.id.tvRetweet_details);
+        //the values of the resources are established applying the View Binding library
+        tvBody = binding.tvBodyDetails;
+        ivProfileImage = binding.ivProfileImageDetails;
+        media = binding.mediaDetails;
+        tvScreenName = binding.tvScreenNameDetails;
+        tvUserName = binding.tvUserNameDetails;
+        tvTimeStamp = binding.timeStampTxtDetails;
+        btnFavorite = binding.btnFavoriteDetails;
+        btnReply = binding.btnReplyDetails;
+        btnRetweet = binding.btnRetweetDetails;
+        tvFavorite = binding.btnFavoriteDetails;
+        tvRetweet = binding.tvRetweetDetails;
 
         client = TwitterApp.getRestClient(getBaseContext());
 
         context = getBaseContext();
+
+        //Receives the tweet that was sent from TimelineActivity.
         Intent intent = getIntent();
         final Tweet tweet = Parcels.unwrap(intent.getParcelableExtra("tweet"));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarId);
+        Toolbar toolbar = binding.toolbarId;
         toolbar.setTitle("Tweet");
         setSupportActionBar(toolbar);
         loadResources(tweet);
     }
 
+    /**
+     * This functions loads all the information of the tweet received.
+     * @param tweet the tweet that is being worked on
+     */
     private void loadResources(final Tweet tweet) {
+        tvBody.setText(tweet.body);
+
+        //set the initial icons of the buttons.
         btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
         btnRetweet.setBackgroundResource(R.drawable.ic_vector_retweet_stroke);
-        tvBody.setText(tweet.body);
+
+        //if the tweet was found to be marked as favorite, the icon is changed.
         if (tweet.favorited) {
             btnFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
         }
+        //if the tweet was found to be retweeted, the icon is changed.
         if (tweet.retweeted) {
             btnRetweet.setBackgroundResource(R.drawable.ic_vector_retweet);
         }
 
+        //user image is loaded implementing Glide.
         Glide.with(getBaseContext())
                 .load(tweet.user.profileImageUrl)
                 .into(ivProfileImage);
+
+        //if the tweet has an embedded image, it is loaded implementing Glide.
         if(!tweet.entities.media.isEmpty())
         {
             Glide.with(getBaseContext())
@@ -87,6 +109,7 @@ public class TweetDetailsActivity extends AppCompatActivity {
         tvFavorite.setText(String.valueOf(tweet.favorite_count));
         tvRetweet.setText(String.valueOf(tweet.retweet_count));
 
+        //onClickLister of the Reply Button
         btnReply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +120,7 @@ public class TweetDetailsActivity extends AppCompatActivity {
             }
         });
 
+        //onClickLister of the Favorite Button
         btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,6 +128,7 @@ public class TweetDetailsActivity extends AppCompatActivity {
             }
         });
 
+        //onClickLister of the Retweet Button
         btnRetweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
